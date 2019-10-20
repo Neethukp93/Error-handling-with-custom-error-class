@@ -1,0 +1,65 @@
+<p-tabView>
+  <p-tabPanel header="Send Cancellation">
+     <div>
+      <div class="ui-g">
+        <div class="ui-g-4">
+          <p-radioButton name="groupname" label="MAWB" value="val1" [(ngModel)]="selectedValue"></p-radioButton>
+          <div class="ui-g">
+              <div class="ui-g-6">Cycle Date</div>
+              <div class="ui-g-6"><p-calendar id= "mawbCycleDate" [(ngModel)]="mawbCycleDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"></p-calendar></div>
+              <div class="ui-g-6">MAWB</div>
+              <div class="ui-g-6"><p-dropdown [options]="mawbList" [(ngModel)]="selectedMawb" placeholder="Select a MAWB" ></p-dropdown></div>
+          </div>
+        </div>
+        <div class="ui-g-4">
+          <p-radioButton name="groupname" label="Flight No." value="val2" [(ngModel)]="selectedValue"></p-radioButton>
+            <div class="ui-g">
+              <div class="ui-g-6">Cycle Date</div>
+              <div class="ui-g-6"><p-calendar d= "flightbCycleDate" [(ngModel)]="flightbCycleDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"></p-calendar></div>
+              <div class="ui-g-6">Flight No.</div>
+              <div class="ui-g-6"><p-dropdown [options]="flightsList" [(ngModel)]="selectedFlight" placeholder="Select a Flight No." ></p-dropdown></div>
+            </div>
+        </div>
+        <div class="ui-g-4">
+          <p-radioButton name="groupname" label="AWB No. (up to Max. 100) " value="val3" [(ngModel)]="selectedValue"></p-radioButton>
+          <div class="ui-g">
+              <div class="ui-g-12"><textarea rows="5" cols="30" pInputTextarea></textarea></div></div>
+        </div>
+    </div>
+    <p-table [value]="tableData">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3em"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                <th>Sl No.</th>
+                <th>Cycle</th>
+                <th>Flight</th>
+                <th>MAWB</th>
+                <th>WorkFlow</th>
+                <th>Bond In</th>
+                <th>Bond Out</th>
+                <th>AWB</th>
+                <th>Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="rowData">
+                <td style="text-align:center;"> <p-tableCheckbox [value]="rowData"></p-tableCheckbox></td>
+                <td>{{rowIndex+1}}</td>
+                <td>{{rowData.cycle}}</td>
+                <td>{{rowData.flight}}</td>
+                <td>{{rowData.mawb}}</td>
+                <td>{{rowData.workFlow}}</td>
+                <td>{{rowData.bondIn}}</td>
+                <td>{{rowData.bondOut}}</td>
+                <td>{{rowData.awb}}</td>
+                <td>{{rowData.status}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <div style="text-align:right;margin-top: 20px;"><button pButton type="button" label="Send Cancellation" class="ui-button-success"></button></div>
+     </div>
+  </p-tabPanel>
+  <p-tabPanel header="History">
+    <div></div>
+  </p-tabPanel>
+</p-tabView>
